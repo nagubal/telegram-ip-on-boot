@@ -4,8 +4,10 @@ Sends the server IP addresses to Telegram on boot
 ``install-telegram-ip-on-boot.sh``
 
 ## Configuration
-You must define the TELEGRAM_CHAT_ID and TELEGRAM_TOKEN environment variables for the telegram-ip-on-boot service; it can be done with systemd drop-in
-``sudo systemctl edit telegram-ip-on-boot.service``
+You must define the TELEGRAM_CHAT_ID and TELEGRAM_TOKEN environment variables for the telegram-ip-on-boot service; it can be done with systemd drop-in:
+```
+sudo systemctl edit telegram-ip-on-boot.service
+```
 
 and paste the following content, using your Telegram Bot Token and Chat ID
 ```
