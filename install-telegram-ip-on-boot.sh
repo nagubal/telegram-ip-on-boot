@@ -13,8 +13,8 @@ else
   fi
 fi
 
-TELEGRAM_IPADDR_SCRIPT=/usr/local/bin/telegram-ipaddr.sh
-TELEGRAM_IPADDR_SERVICE=/etc/systemd/system/telegram-ipaddr.service
+TELEGRAM_IPADDR_SCRIPT=/usr/local/bin/telegram-ip-on-boot.sh
+TELEGRAM_IPADDR_SERVICE=/etc/systemd/system/telegram-ip-on-boot.service
 
 
 echo "Installation du script $TELEGRAM_IPADDR_SCRIPT"
@@ -72,15 +72,14 @@ After=network-online.target
 Type=oneshot
 #Environment=TELEGRAM_CHAT_ID=
 #Environment=TELEGRAM_TOKEN=
-ExecStart=/usr/local/bin/telegram-ipaddr.sh
+ExecStart=/usr/local/bin/telegram-ip-on-boot.sh
 
 [Install]
 WantedBy=multi-user.target
 EOF
 
 $SUDO systemctl daemon-reload
-$SUDO systemctl enable telegram-ipaddr.service
+$SUDO systemctl enable telegram-ip-on-boot.service
 echo -e "\u2714 Service $TELEGRAM_IPADDR_SERVICE installé et activé"
 
-echo -e "\u2714 telegram-ipaddr a été installé."
-echo -e "\u26A0 Les variables d'environnement TELEGRAM_TOKEN et TELEGRAM_CHAT_ID doivent être définies: sudo systemctl edit telegram-ipaddr.service"
+echo -e "\u26A0 Les variables d'environnement TELEGRAM_TOKEN et TELEGRAM_CHAT_ID doivent être définies: sudo systemctl edit telegram-ip-on-boot.service"
