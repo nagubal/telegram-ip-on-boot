@@ -1,5 +1,10 @@
 # telegram-ip-on-boot
 Sends the server IP addresses to Telegram on boot
+
+## Why ?
+I have a few headless servers (Raspberry Pi, Orange Pi, nuc, etc.), and I want be notified when it is online after a reboot, or when setting up a new one. 
+
+
 ## Installation
 ``install-telegram-ip-on-boot.sh``
 
