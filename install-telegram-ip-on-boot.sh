@@ -36,11 +36,13 @@ SHOW_IP_PATTERN="^[ewr].*|^lt.*|^umts.*"
 
 function get_ip_addresses() {
   local ips=()
+  local intf
+  local tmp
   for f in /sys/class/net/*; do
-    local intf=$(basename $f)
+    intf=$(basename "$f")
     # match only interface names starting with e (Ethernet), br (bridge), w (wireless), r (some Ralink drivers use ra<number> format)
     if [[ $intf =~ $SHOW_IP_PATTERN ]]; then
-      local tmp=$(ip -4 addr show dev $intf | awk '/inet/ {print $2}' | cut -d'/' -f1)
+      tmp=$(ip -4 addr show dev "$intf" | awk '/inet/ {print $2}' | cut -d'/' -f1)
       # add both name and IP - can be informative but becomes ugly with long persistent/predictable device names
       [[ -n $tmp ]] && ips+=("*$intf*: $tmp")
       # add IP only
@@ -51,11 +53,10 @@ function get_ip_addresses() {
 } # get_ip_addresses
 
 
-hostname=`/bin/hostname`
-ip_address=$(get_ip_addresses &)
+hostname=$(/bin/hostname)
 MESSAGE="$(echo -e "\U1F4A1") Le serveur *$hostname* est prêt. $(get_ip_addresses &)"
 
-curl -s -X POST $URL -d chat_id=${TELEGRAM_CHAT_ID} -d parse_mode=markdown -d text="$MESSAGE" >/dev/null
+curl -s -X POST "$URL" -d chat_id="${TELEGRAM_CHAT_ID}" -d parse_mode=markdown -d text="$MESSAGE" >/dev/null
 EOF
 
 $SUDO chmod a+x $TELEGRAM_IPADDR_SCRIPT
