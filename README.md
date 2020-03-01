@@ -13,6 +13,7 @@ It creates a bash script and a systemd service which is enabled
 /usr/local/bin/telegram-ip-on-boot.sh
 /etc/systemd/system/telegram-ip-on-boot.service
 ```
+`curl` must be installed.
 
 ## Configuration
 You must define the TELEGRAM_CHAT_ID and TELEGRAM_TOKEN environment variables for the telegram-ip-on-boot service; it can be done with systemd drop-in (/etc/systemd/system/telegram-ip-on-boot.service.d/override.conf file):
