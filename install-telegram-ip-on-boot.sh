@@ -67,7 +67,7 @@ $SUDO tee $TELEGRAM_IPADDR_SERVICE >/dev/null <<'EOF'
 [Unit]
 Description=Envoie les adresses IP du serveur au démarrage
 Wants=network-online.target
-After=network-online.target
+After=ssh.service
 
 [Service]
 Type=oneshot
