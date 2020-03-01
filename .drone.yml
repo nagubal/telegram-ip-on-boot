@@ -8,4 +8,4 @@ steps:
     pull: always
     commands:
       - shellcheck --version
-      - shellcheck ./*
+      - shellcheck ./*.sh
