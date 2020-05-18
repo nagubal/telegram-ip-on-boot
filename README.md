@@ -54,3 +54,5 @@ sudo rm /etc/systemd/system/telegram-ip-on-boot.service
 sudo rm -rf /etc/systemd/system/telegram-ip-on-boot.service.d/
 sudo rm /usr/local/bin/telegram-ip-on-boot.sh
 ```
+
+Enjoy
